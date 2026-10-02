@@ -30,4 +30,26 @@ console.log(longestNote()); // expected: null
 
 notes = originalNotes;
 
+    function countByCategory() {
+  const counts = {
+    personal: 0,
+    work: 0,
+    study: 0
+  };
+
+  for (const note of notes) {
+    counts[note.category]++;
+  }
+
+  return counts;
+}
+
+    console.log(countByCategory());// expected: { personal: 2, work: 1, study: 2 }
+    const savedNotes = notes;
+notes = [];
+
+console.log(countByCategory()); // expected: { personal: 0, work: 0, study: 0 }
+
+notes = savedNotes;
+
 
