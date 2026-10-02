@@ -52,4 +52,21 @@ console.log(countByCategory()); // expected: { personal: 0, work: 0, study: 0 }
 
 notes = savedNotes;
 
+    function getSummary() {
+  const counts = countByCategory();
+  const word = notes.length === 1 ? "note" : "notes";
+
+  return `${notes.length} ${word}: ${counts.personal} personal, ${counts.work} work, ${counts.study} study.`;
+}
+
+    console.log(getSummary()); // expected: "5 notes: 2 personal, 1 work, 2 study."
+    const savedNotes2 = notes;
+notes = [];
+
+console.log(getSummary()); // expected: "0 notes: 0 personal, 0 work, 0 study."
+
+notes = savedNotes2;
+
+    
+
 
