@@ -67,6 +67,52 @@ console.log(getSummary()); // expected: "0 notes: 0 personal, 0 work, 0 study."
 
 notes = savedNotes2;
 
+    const savedNotes2 = notes;
+notes = [];
+
+console.log(getSummary()); // expected: "0 notes: 0 personal, 0 work, 0 study."
+
+notes = savedNotes2;
+
+    console.log(isDuplicate("buy MILK and bread")); // expected: true
+console.log(isDuplicate("Pizza")); // expected: false
+
+    function addNote(text, category) {
+  const cleanedText = text.trim();
+
+  if (cleanedText.length < 1 || cleanedText.length > 200) {
+    console.log("Note not added: text must be 1-200 characters.");
+    return false;
+  }
+
+  if (isDuplicate(cleanedText)) {
+    console.log("Note not added: duplicate.");
+    return false;
+  }
+
+  if (!["personal", "work", "study"].includes(category)) {
+    console.log("Note not added: invalid category.");
+    return false;
+  }
+
+  const newId = notes.length
+    ? Math.max(...notes.map(note => note.id)) + 1
+    : 1;
+
+  notes.push({
+    id: newId,
+    text: cleanedText,
+    category: category
+  });
+
+  console.log("Note added.");
+  return true;
+}
+    console.log(addNote("Plan weekend trip", "personal")); // expected: true
+console.log(addNote("Buy milk and bread", "personal")); // expected: false
+console.log(addNote("", "work")); // expected: false
+console.log(addNote("New task", "school")); // expected: false
+
     
 
 
