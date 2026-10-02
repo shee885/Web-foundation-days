@@ -16,3 +16,18 @@ function searchNotes(word) {
 
 console.log(searchNotes("Day")); // expected: note 2
 console.log(searchNotes("pizza")); // expected: []
+
+function longestNote() {
+
+  function longestNote() {
+  if (notes.length === 0) {
+
+    console.log(longestNote()); // expected: note 3
+    const originalNotes = notes;
+notes = [];
+
+console.log(longestNote()); // expected: null
+
+notes = originalNotes;
+
+
