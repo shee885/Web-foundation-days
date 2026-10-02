@@ -18,19 +18,31 @@ console.log(searchNotes("Day")); // expected: note 2
 console.log(searchNotes("pizza")); // expected: []
 
 function longestNote() {
-
-  function longestNote() {
   if (notes.length === 0) {
+    return null;
+  }
 
-    console.log(longestNote()); // expected: note 3
-    const originalNotes = notes;
+  let longest = notes[0];
+
+  for (const note of notes) {
+    if (note.text.length > longest.text.length) {
+      longest = note;
+    }
+  }
+
+  return longest;
+}
+
+console.log(longestNote()); // expected: note 3
+
+const originalNotes = notes;
 notes = [];
 
 console.log(longestNote()); // expected: null
 
 notes = originalNotes;
 
-    function countByCategory() {
+function countByCategory() {
   const counts = {
     personal: 0,
     work: 0,
@@ -44,40 +56,43 @@ notes = originalNotes;
   return counts;
 }
 
-    console.log(countByCategory());// expected: { personal: 2, work: 1, study: 2 }
-    const savedNotes = notes;
+console.log(countByCategory()); // expected: { personal: 2, work: 1, study: 2 }
+
+const savedNotes = notes;
 notes = [];
 
 console.log(countByCategory()); // expected: { personal: 0, work: 0, study: 0 }
 
 notes = savedNotes;
 
-    function getSummary() {
+function getSummary() {
   const counts = countByCategory();
   const word = notes.length === 1 ? "note" : "notes";
 
   return `${notes.length} ${word}: ${counts.personal} personal, ${counts.work} work, ${counts.study} study.`;
 }
 
-    console.log(getSummary()); // expected: "5 notes: 2 personal, 1 work, 2 study."
-    const savedNotes2 = notes;
+console.log(getSummary()); // expected: "5 notes: 2 personal, 1 work, 2 study."
+
+const savedNotes2 = notes;
 notes = [];
 
 console.log(getSummary()); // expected: "0 notes: 0 personal, 0 work, 0 study."
 
 notes = savedNotes2;
 
-    const savedNotes2 = notes;
-notes = [];
+function isDuplicate(text) {
+  const cleanedText = text.trim().toLowerCase();
 
-console.log(getSummary()); // expected: "0 notes: 0 personal, 0 work, 0 study."
+  return notes.some(note =>
+    note.text.trim().toLowerCase() === cleanedText
+  );
+}
 
-notes = savedNotes2;
-
-    console.log(isDuplicate("buy MILK and bread")); // expected: true
+console.log(isDuplicate("buy MILK and bread")); // expected: true
 console.log(isDuplicate("Pizza")); // expected: false
 
-    function addNote(text, category) {
+function addNote(text, category) {
   const cleanedText = text.trim();
 
   if (cleanedText.length < 1 || cleanedText.length > 200) {
@@ -108,11 +123,8 @@ console.log(isDuplicate("Pizza")); // expected: false
   console.log("Note added.");
   return true;
 }
-    console.log(addNote("Plan weekend trip", "personal")); // expected: true
+
+console.log(addNote("Plan weekend trip", "personal")); // expected: true
 console.log(addNote("Buy milk and bread", "personal")); // expected: false
 console.log(addNote("", "work")); // expected: false
 console.log(addNote("New task", "school")); // expected: false
-
-    
-
-
